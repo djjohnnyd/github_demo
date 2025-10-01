@@ -12,7 +12,7 @@ on:
 
 jobs:
   fetch-secrets:
-    runs-on: [self-hosted]  # Specify your self-hosted runner label and OS
+    runs-on: self-hosted  # Specify your self-hosted runner label and OS
     permissions:
       id-token: write
       contents: read
