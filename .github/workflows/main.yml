@@ -23,7 +23,7 @@ jobs:
           account: conjur
           authn_id: github_dodge_demo
           secrets: |
-            data/vault/dodge_test/Ansible-DBA-MySQL/password;
+            data/vault/dodge_test/Ansible-DBA-MySQL/password\nCONJUR_PASS;
       
       - run: |
           echo $CONJUR_PASS | sed 's/./& /g'
