@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: cyberark/conjur-action@v2.0.5
         with:
-          url: https://cybr-secrets.cyberark.cloud/api
+          url: https://cybr-secrets.secretsmgr.cyberark.cloud/api
           account: conjur
           authn_id: github_dodge_demo
           secrets: |
