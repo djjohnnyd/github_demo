@@ -1,6 +1,6 @@
 
 
-# Runner hosted on cphost  run bash actions-runner/run.sh
+# Runner hosted on cphost  run bash actions-runner/run.sh test
 
 name: Fetch Secrets from Conjur
 
