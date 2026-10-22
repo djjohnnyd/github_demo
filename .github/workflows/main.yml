@@ -21,7 +21,7 @@ jobs:
         with:
           url: https://cybr-secrets.secretsmgr.cyberark.cloud/api
           account: conjur
-          authn_id: github_dodge_demo
+          authn_id: ${{ secrets.AUTHN_ID }}
           secrets: |
             data/vault/dodge_test/Ansible-DBA-MySQL/password|CONJUR_PASS;
       
