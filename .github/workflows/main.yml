@@ -29,9 +29,9 @@ jobs:
         uses: cyberark/conjur-action@v2.0.5
         with:
           url: ${{ secrets.CONJUR_URL }}
-          account: ${{ vars.ACCOUNT || 'conjur' }}
+          account: ${{ secrets.ACCOUNT || 'conjur' }}
           authn_id: ${{ secrets.AUTHN_ID }}
-          secrets: ${{ vars.CONJUR_SECRETS_PATH }}|CONJUR_PASS;
+          secrets: ${{ secrets.CONJUR_SECRETS_PATH }}|CONJUR_PASS;
 
       - name: Verify Secret Fetch
         run: |
