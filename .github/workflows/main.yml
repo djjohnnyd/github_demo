@@ -1,30 +1,38 @@
-
-
-# Runner hosted on cphost  run bash actions-runner/run.sh test3
-
 name: Fetch Secrets from Conjur
 
 on:
+  workflow_dispatch:
+    inputs:
+      target_environment:
+        description: 'Select target Conjur environment'
+        required: true
+        default: 'conjur-demo-primary'
+        type: choice
+        options:
+          - conjur-demo-primary
+          - conjur-demo-secondary
   push:
     branches:
       - main
-  workflow_dispatch:
 
 jobs:
   fetch-secrets:
-    runs-on: self-hosted  # Specify your self-hosted runner label and OS
+    # Dynamically bind to the chosen environment (defaults to primary on push)
+    environment: ${{ inputs.target_environment || 'conjur-demo-primary' }}
+    runs-on: self-hosted
     permissions:
       id-token: write
       contents: read
+
     steps:
-      - uses: cyberark/conjur-action@v2.0.5
+      - name: Retrieve secrets from Conjur
+        uses: cyberark/conjur-action@v2.0.5
         with:
-          url: https://cybr-secrets.secretsmgr.cyberark.cloud/api
-          account: conjur
+          url: ${{ secrets.CONJUR_URL }}
+          account: ${{ vars.ACCOUNT || 'conjur' }}
           authn_id: ${{ secrets.AUTHN_ID }}
-          secrets: |
-            data/vault/dodge_test/Ansible-DBA-MySQL/password|CONJUR_PASS;
-      
-      - run: |
-          echo $CONJUR_PASS | sed 's/./& /g'
-          echo $ACTIONS_ID_TOKEN_REQUEST_TOKEN
+          secrets: ${{ vars.CONJUR_SECRETS_PATH }}|CONJUR_PASS;
+
+      - name: Verify Secret Fetch
+        run: |
+          echo "$CONJUR_PASS" | sed 's/./& /g'
