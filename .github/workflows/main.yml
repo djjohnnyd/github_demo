@@ -9,8 +9,8 @@ on:
         default: 'conjur-demo-primary'
         type: choice
         options:
-          - conjur-demo-primary
-          - conjur-demo-secondary
+          - conjur-demo-1
+          - conjur-demo-2
   push:
     branches:
       - main
