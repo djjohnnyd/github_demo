@@ -37,7 +37,8 @@ jobs:
           url: ${{ secrets.CONJUR_URL }}
           account: ${{ secrets.ACCOUNT || 'conjur' }}
           authn_id: ${{ secrets.AUTHN_ID }}
-          secrets: ${{ secrets.CONJUR_SECRETS_PATH }}|CONJUR_PASS;
+          secrets: |
+              ${{ secrets.CONJUR_SECRETS_PATH }}|CONJUR_PASS;
 
       - name: Verify Secret Fetch
         run: |
