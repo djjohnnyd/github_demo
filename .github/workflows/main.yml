@@ -25,6 +25,12 @@ jobs:
       contents: read
 
     steps:
+    # NEW DEBUG STEP: Echo the secret path bracketed by pipes to expose any invisible trailing spaces
+      - name: Debug Conjur Secrets Path
+        run: |
+          echo "CONJUR_SECRETS_PATH is: |${{ vars.CONJUR_SECRETS_PATH }}|"
+          echo "Expected format: |data/vault/dodge_test/Ansible-DBA-MySQL/password|"
+          
       - name: Retrieve secrets from Conjur
         uses: cyberark/conjur-action@v2.0.5
         with:
