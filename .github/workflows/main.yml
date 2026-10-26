@@ -18,7 +18,7 @@ on:
 jobs:
   fetch-secrets:
     # Dynamically bind to the chosen environment (defaults to primary on push)
-    environment: ${{ inputs.target_environment || 'conjur-demo-primary' }}
+    environment: ${{ inputs.target_environment || 'conjur_demo_1' }}
     runs-on: self-hosted
     permissions:
       id-token: write
