@@ -37,7 +37,7 @@ jobs:
       - name: Retrieve secrets from Conjur
         uses: cyberark/conjur-action@v2.0.5
         with:
-          url: https://cybr-secrets.secretsmgr.cyberark.cloud/api
+          url: ${{ secrets.CONJUR_URL }}
           account: conjur
           authn_id: github_dodge_demo
           secrets: |
