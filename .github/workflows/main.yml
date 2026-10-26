@@ -41,7 +41,7 @@ jobs:
           account: ${{ secrets.ACCOUNT }}
           authn_id: ${{ secrets.AUTHN_ID }}
           secrets: |
-          data/vault/dodge_test/Ansible-DBA-MySQL/password|CONJUR_PASS;
+            data/vault/dodge_test/Ansible-DBA-MySQL/password|CONJUR_PASS;
 
       - name: Verify Secret Fetch
         run: |
