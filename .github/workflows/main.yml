@@ -38,10 +38,10 @@ jobs:
         uses: cyberark/conjur-action@v2.0.5
         with:
           url: ${{ secrets.CONJUR_URL }}
-          account: conjur
-          authn_id: github_dodge_demo
+          account: ${{ secrets.ACCOUNT }}
+          authn_id: ${{ secrets.AUTHN_ID }}
           secrets: |
-            data/vault/dodge_test/Ansible-DBA-MySQL/password|CONJUR_PASS;
+            ${{ secrets.CONJUR_SECRETS_PATH }}|CONJUR_PASS;
 
       - name: Verify Secret Fetch
         run: |
