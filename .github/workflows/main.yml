@@ -37,9 +37,9 @@ jobs:
       - name: Retrieve secrets from Conjur
         uses: cyberark/conjur-action@v2.0.5
         with:
-          url: ${{ secrets.CONJUR_URL }}
-          account: ${{ secrets.ACCOUNT }}
-          authn_id: ${{ secrets.AUTHN_ID }}
+          url: https://cybr-secrets.secretsmgr.cyberark.cloud/api
+          account: conjur
+          authn_id: github_dodge_demo
           secrets: |
             data/vault/dodge_test/Ansible-DBA-MySQL/password|CONJUR_PASS;
 
