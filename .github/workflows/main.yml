@@ -24,24 +24,15 @@ jobs:
       id-token: write
       contents: read
 
-    steps:
-    # NEW DEBUG STEP: Echo the secret path bracketed by pipes to expose any invisible trailing spaces
-      - name: Debug Conjur Secrets Path
-        run: |
-          echo "CONJUR_SECRETS_PATH is: |${{ secrets.CONJUR_SECRETS_PATH }}|"
-          echo "AUTHN_ID is: |${{ secrets.AUTHN_ID }}|"
-          echo "ACCOUNT is: |${{ secrets.ACCOUNT }}|"
-          echo "CONJUR_URL is: |${{ secrets.CONJUR_URL }}|"
-          echo "Expected format: |asd|"
-          
+    steps:          
       - name: Retrieve secrets from Conjur
         uses: cyberark/conjur-action@v2.0.5
         with:
-          url: ${{ secrets.CONJUR_URL }}
-          account: ${{ secrets.ACCOUNT }}
-          authn_id: ${{ secrets.AUTHN_ID }}
+          url: ${{ vars.CONJUR_URL }}
+          account: ${{ vars.ACCOUNT }}
+          authn_id: ${{ vars.AUTHN_ID }}
           secrets: |
-            ${{ secrets.CONJUR_SECRETS_PATH }}|CONJUR_PASS;
+            ${{ vars.CONJUR_SECRETS_PATH }}|CONJUR_PASS;
 
       - name: Verify Secret Fetch
         run: |
